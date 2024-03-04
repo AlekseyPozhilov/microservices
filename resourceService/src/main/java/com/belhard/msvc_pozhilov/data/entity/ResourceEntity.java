@@ -1,4 +1,4 @@
-package com.belhard.msvc_pozhilov.entity;
+package com.belhard.msvc_pozhilov.data.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

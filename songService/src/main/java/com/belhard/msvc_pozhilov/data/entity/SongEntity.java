@@ -1,4 +1,4 @@
-package com.belhard.msvc_pozhilov.entity;
+package com.belhard.msvc_pozhilov.data.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class SongEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String artist;
     private String album;
     private Integer length;
