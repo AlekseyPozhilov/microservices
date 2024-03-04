@@ -1,7 +1,7 @@
 package com.belhard.msvc_pozhilov.service;
 
 import com.belhard.msvc_pozhilov.dto.ResourceDto;
-import com.belhard.msvc_pozhilov.entity.ResourceEntity;
+import com.belhard.msvc_pozhilov.data.entity.ResourceEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

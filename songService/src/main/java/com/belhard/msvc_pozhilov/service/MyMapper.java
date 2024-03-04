@@ -1,7 +1,7 @@
 package com.belhard.msvc_pozhilov.service;
 
 import com.belhard.msvc_pozhilov.dto.SongDto;
-import com.belhard.msvc_pozhilov.entity.SongEntity;
+import com.belhard.msvc_pozhilov.data.entity.SongEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
