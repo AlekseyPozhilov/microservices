@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: songService
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_URL}
+my:
+  client:
+    bravo:
+      id: songService
+      endpoint: ping
+    s3:
+      url: http://localstack:4566
+      accessKey: fake_access_key
+      secretKey: fake_secret_key
+      bucket: com.hrm.my.bucket.1
+      region: us-west-1
