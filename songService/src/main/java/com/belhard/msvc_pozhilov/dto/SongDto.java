@@ -7,11 +7,11 @@ import java.util.Date;
 @Data
 public class SongDto {
     private Long id;
-    private String name;
+    private String title;
     private String artist;
     private String album;
     private Integer length;
-    private Integer resourceID;
+    private Integer resourceId;
     private Integer year;
     private Date createdTimestamp;
 }
