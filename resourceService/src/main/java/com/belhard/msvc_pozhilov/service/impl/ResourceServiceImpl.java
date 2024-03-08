@@ -2,6 +2,7 @@ package com.belhard.msvc_pozhilov.service.impl;
 
 import com.belhard.msvc_pozhilov.data.entity.ResourceEntity;
 import com.belhard.msvc_pozhilov.data.repository.ResourceRepository;
+import com.belhard.msvc_pozhilov.dto.ResourceDto;
 import com.belhard.msvc_pozhilov.service.MyMapper;
 import com.belhard.msvc_pozhilov.service.ResourceService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 
 @Service
@@ -24,11 +26,12 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public void uploadResource(MultipartFile file) {
         try {
-            ResourceEntity resourceEntity = new ResourceEntity();
-            resourceEntity.setAudioData(file.getBytes());
-            resourceEntity.setMetadata(file.getOriginalFilename());
-            resourceEntity.setTimestamp(new Date());
+            ResourceDto resourceDto = new ResourceDto();
+            resourceDto.setMetadata(Arrays.toString(file.getBytes()));
+            resourceDto.setMetadata(file.getOriginalFilename());
+            resourceDto.setTimestamp(new Date());
 
+            ResourceEntity resourceEntity = myMapper.toEntity(resourceDto);
             resourceRepository.save(resourceEntity);
             log.info("Uploaded resource with ID: " + resourceEntity.getId());
         } catch (IOException e) {

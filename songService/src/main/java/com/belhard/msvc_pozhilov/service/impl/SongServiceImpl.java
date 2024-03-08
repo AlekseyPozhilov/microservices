@@ -2,6 +2,7 @@ package com.belhard.msvc_pozhilov.service.impl;
 
 import com.belhard.msvc_pozhilov.data.entity.SongEntity;
 import com.belhard.msvc_pozhilov.data.repository.SongRepository;
+import com.belhard.msvc_pozhilov.dto.SongDto;
 import com.belhard.msvc_pozhilov.service.MyMapper;
 import com.belhard.msvc_pozhilov.service.SongService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -62,10 +65,40 @@ public class SongServiceImpl implements SongService {
         songEntity.setArtist(metadataMap.get("artist"));
         songEntity.setAlbum(metadataMap.get("album"));
         songEntity.setLength(Integer.valueOf(metadataMap.get("length")));
-        songEntity.setResourceID(Integer.valueOf(metadataMap.get("resourceID")));
+        songEntity.setResourceId(Integer.valueOf(metadataMap.get("resourceID")));
         songEntity.setYear(Integer.valueOf(metadataMap.get("year")));
 
 
         songRepository.save(songEntity);
+    }
+
+    @Override
+    public void createSong(SongDto songDto) {
+        SongEntity songEntity = myMapper.toEntity(songDto);
+        songRepository.save(songEntity);
+        log.info("Song created successfully: {}", songEntity);
+    }
+
+    @Override
+    public SongDto getSongById(Long id) {
+        Optional<SongEntity> songEntityOptional = songRepository.findById(id);
+        if (songEntityOptional.isPresent()) {
+            SongEntity songEntity = songEntityOptional.get();
+            return myMapper.toDto(songEntity);
+        } else {
+            log.error("Song with ID {} not found", id);
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteSongs(List<Long> ids) {
+        List<SongEntity> songsToDelete = songRepository.findAllById(ids);
+        if (!songsToDelete.isEmpty()) {
+            songRepository.deleteAll(songsToDelete);
+            log.info("Deleted songs with IDs: {}", ids);
+        } else {
+            log.error("No songs found for deletion with IDs: {}", ids);
+        }
     }
 }
