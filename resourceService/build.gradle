@@ -28,6 +28,7 @@ dependencies {
 	implementation 'org.apache.tika:tika-core:1.27'
 	implementation 'org.apache.tika:tika-parsers:1.27'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
 	compileOnly 'org.projectlombok:lombok'
 
