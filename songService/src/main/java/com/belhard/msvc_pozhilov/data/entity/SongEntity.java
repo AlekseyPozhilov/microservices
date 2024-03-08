@@ -23,7 +23,7 @@ public class SongEntity {
     private String artist;
     private String album;
     private Integer length;
-    private Integer resourceID;
+    private Integer resourceId;
     private Integer year;
 
     @CreationTimestamp
