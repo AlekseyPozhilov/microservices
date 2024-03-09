@@ -1,3 +1,5 @@
 rootProject.name = 'msvc_pozhilov'
 include 'resourceService'
 include 'songService'
+include 'discoveryService'
+
